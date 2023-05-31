@@ -32,7 +32,7 @@ import links from '@/config/nav.js'
           </a>
           <a class="hidden lg:flex" href="#">
             <img
-              class="ccfv-logo | w-32 xl:mx-12 my-12 h-auto hover:opacity-80"
+              class="ccfv-logo | w-52 mx-12 my-12 h-auto hover:opacity-80"
               src="/img/nsh.png"
               alt="NSH Logo"
             />
