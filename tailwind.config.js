@@ -7,6 +7,7 @@ const colors = {
     "ccfv-cyan": "#87ABCC",
     "ccfv-orange": "#DE8226",
     "ccfv-gold": "#F2AB45",
+    "ccfv-grey": "#4F4F4F",
     white: "#ffffff",
   },
 };
@@ -41,5 +42,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("preline/plugin")],
+  plugins: [require("preline/plugin"), require('@tailwindcss/forms')],
 };

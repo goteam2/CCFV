@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tailwindcss/forms": "^0.5.3",
     "preline": "^1.8.0",
     "swiper": "^9.3.2",
     "vue": "^3.3.2"
