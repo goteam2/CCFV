@@ -11,7 +11,7 @@ const content = {
   hero: {
     title: "Advancing Immunization for a Healthier World.",
     cta: "Continue to CCfV",
-    link: "https://centerforvaccinology.ca/",
+    link: "https://centerforvaccinology.ca/home",
   },
   intro: {
     title: "Welcome to the new look of CCfV.",
@@ -81,7 +81,7 @@ const content = {
     title: "Join Us in Shaping the Future",
     body: "Together, we make a difference. Whether you're a researcher, healthcare professional, industry representative, study volunteer or passionate advocate, collaborate with us on our journey toward a healthier world. Explore our current website to learn more, get involved, or support our mission.",
     cta: "Continue to CCfV",
-    link: "https://centerforvaccinology.ca/",
+    link: "https://centerforvaccinology.ca/home",
   },
 };
 
