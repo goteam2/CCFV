@@ -25,7 +25,7 @@ const links = [
       current: false,
     },
     {
-      name: "About CCFV",
+      name: "About CCfV",
       href: "https://centerforvaccinology.ca/about-ccfv/",
       current: false,
     },

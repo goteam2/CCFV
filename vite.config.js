@@ -20,4 +20,9 @@ export default defineConfig({
       },
     },
   },
+  template: {
+    compilerOptions: {
+      isCustomElement: (tag) =>tag.startsWith('swiper-'),
+    }
+  }
 });

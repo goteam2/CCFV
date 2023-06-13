@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, ref } from "vue";
+import { register } from "swiper/element/bundle";
 
 import Header from "./components/layout/Header.vue";
 import Footer from "./components/layout/Footer.vue";
@@ -9,7 +10,7 @@ import Card from "./components/Card.vue";
 const content = {
   hero: {
     title: "Advancing Immunization for a Healthier World.",
-    cta: "Continue to CCFV",
+    cta: "Continue to CCfV",
     link: "https://centerforvaccinology.ca/",
   },
   intro: {
@@ -21,20 +22,28 @@ const content = {
     cards: [
       {
         title: "Trusted Expertise",
+        icon: "trusted-expertise.svg",
         body: "With decades of experience, our interdisciplinary team of nationally recognized scientists and medical professionals leads the way in vaccinology. We develop and evaluate safe, effective, and life-saving vaccines while addressing social issues to increase vaccine acceptance.",
       },
       {
         title: "Responsive Research",
+        icon: "responsive-research.svg",
         body: "At CCfV, we respond to emerging health threats and public concerns. Through state-of-the-art facilities and collaborative partnerships with industry and communities, we stay at the forefront of vaccine innovation, ensuring quality and safety.",
       },
       {
         title: "Global Impact",
-        body: "At CCfV, we respond to emerging health threats and public concerns. Through state-of-the-art facilities and collaborative partnerships with industry and communities, we stay at the forefront of vaccine innovation, ensuring quality and safety.",
+        icon: "global-impact.svg",
+        body: "We work with investigators both across Canada and around the world to make a meaningful difference in communities worldwide by combating infectious diseases, increasing vaccine awareness and acceptance, and building resiliency against future pandemics. ",
       },
     ],
   },
   services: {
     title: "Our Services",
+    navigation: {
+      nextEl: ".ccfv-services--swiper-nav-next",
+      prevEl: ".ccfv-services--swiper-nav-previous",
+      disabledClass: "pointer-events-none opacity-50",
+    },
     cards: [
       {
         title: "Vaccine Development",
@@ -71,7 +80,7 @@ const content = {
   joinUs: {
     title: "Join Us in Shaping the Future",
     body: "Together, we make a difference. Whether you're a researcher, healthcare professional, industry representative, study volunteer or passionate advocate, collaborate with us on our journey toward a healthier world. Explore our current website to learn more, get involved, or support our mission.",
-    cta: "Continue to CCFV",
+    cta: "Continue to CCfV",
     link: "https://centerforvaccinology.ca/",
   },
 };
@@ -79,6 +88,7 @@ const content = {
 const swiperParams = {
   spaceBetween: 32,
   slidesPerView: 1.5,
+
   breakpoints: {
     240: {
       slidesPerView: 1.05,
@@ -119,7 +129,17 @@ const onSlideChange = (e) => {
   console.log("slide changed");
 };
 const posts = ref([]);
+const post_navigation = {
+  nextEl: ".ccfv-posts--swiper-nav-next",
+  prevEl: ".ccfv-posts--swiper-nav-previous",
+  disabledClass: "pointer-events-none opacity-50",
+
+};
+
+  // register Swiper custom elements
+  register();
 onMounted(() => {
+
   fetch("https://centerforvaccinology.ca/wp-json/wp/v2/posts?per_page=3")
     .then((res) => res.json())
     .then((data) => {
@@ -184,7 +204,7 @@ onMounted(() => {
         <img
           class="lg:w-56 w-32 max-w-full h-auto"
           src="/img/ccfv-icon.svg"
-          alt="CCFV Logo Framed"
+          alt="CCfV Logo Framed"
         />
       </div>
 
@@ -213,9 +233,9 @@ onMounted(() => {
         v-for="card in content.valueProp.cards"
       >
         <img
-          src="/img/ccfv-icon.svg"
-          alt="CCFV Logo"
-          class="w-20 h-auto p-4 lg:p-3 mb-4"
+          :src="'/img/'+card.icon"
+          :alt="card.title"
+          class="w-24 h-auto mb-4"
         />
         <h3 class="text-2xl font-bold text-ccfv-blue mb-4">{{ card.title }}</h3>
         <p class="text-xl">
@@ -225,26 +245,41 @@ onMounted(() => {
     </div>
   </section>
 
-  <section class="ccfv-services | py-12 lg:py-32 bg-white overflow-visible">
-    <div class="max-w-screen-xl mx-auto grid grid-cols-12 gap-8">
-      <div class="col-span-12 px-12">
+  <section class="ccfv-services | py-12 lg:py-32 ps-8 bg-white overflow-visible">
+   
+    <div class="max-w-screen | flex gap-x-8 | place-items-center | mb-5 lg:mb-10 ">
+     
+      <div class="xl:ms-auto">
         <h2
-          class="font-sans text-3xl lg:text-4xl font-bold mb-3 lg:mb-10 lg:text-center text-ccfv-blue"
+          class="font-sans text-3xl lg:text-4xl font-bold lg:text-end text-ccfv-blue"
         >
           {{ content.services.title }}
         </h2>
       </div>
+      <div class="lg:px-12 flex ms-auto xl:ms-0 xl:me-auto">
+        <span role="button" class="ccfv-services--swiper-nav-previous | border-ccfv-blue border-4 rounded-full | bg-white hover:bg-ccfv-orange active:bg-ccfv-gold  | p-3 mx-3 | transition-all duration-75 | .swiper-button-disabled:opacity-80 | group">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 group-hover:stroke-white stroke-ccfv-blue">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+          </svg>
+        </span>
+        <span role="button" class="ccfv-services--swiper-nav-next | border-ccfv-blue border-4 rounded-full | bg-white hover:bg-ccfv-orange active:bg-ccfv-gold  | p-3 mx-3 | transition-all duration-75 | group">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 group-hover:stroke-white stroke-ccfv-blue">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+
+        </span>
+      </div>
     </div>
     <div
-      class="w-full mx-auto overflow-hidden | p-6 lg:pb-32 | grid grid-cols-12 lg:gap-12"
+      class="w-full mx-auto overflow-visible | pb-6 lg:pb-32 | grid grid-cols-12 lg:gap-12"
     >
       <div
-        class="hidden lg:block | my-auto px-0 2xl:px-10 | col-span-12 lg:col-span-2 xl:col-span-3 overflow-visible"
+        class="hidden lg:block | my-auto px-0 2xl:px-10 | col-span-12 lg:col-span-2 xl:col-span-3 overflow-visible | pointer-events-none user-select-none"
       >
         <img
-          class="w-[32rem] max-w-[420px] translate-x-10 -mt-4 2xl:translate-x-40 2xl:ms-auto"
+          class="w-[32rem] max-w-[420px] translate-x-10 -mt-4 2xl:translate-x-40 2xl:ms-auto "
           src="/img/ccfv-icon.svg"
-          alt="CCFV Services Background"
+          alt="CCfV Services Background"
         />
       </div>
       <div
@@ -255,6 +290,7 @@ onMounted(() => {
           :space-between="swiperParams.spaceBetween"
           :centered-slides="false"
           :pagination="false"
+          :navigation="content.services.navigation"
           :breakpoints="swiperParams.breakpoints"
         >
           <swiper-slide
@@ -298,20 +334,37 @@ onMounted(() => {
         </div>
       </div>
       <div
-        class="col-span-12 xl:col-span-6 | order-first lg:order-last | py-12 px-6 lg:pb-24 lg:pt-24 lg:px-16 | bg-ccfv-gold overflow-hidden"
+        class="col-span-12 xl:col-span-6 | grid grid-cols-12 | items-center | order-first lg:order-last | py-12 ps-8 lg:pb-24 lg:pt-24 lg:px-16  | bg-ccfv-gold overflow-hidden"
       >
-        <h2
-          class="text-3xl lg:text-4xl text-ccfv-blue font-bold font-display mb-5 lg:mb-10"
-        >
-          Latest News
-        </h2>
-        <div class="overflow-visible">
+        <div class="col-span-6 lg:col-span-4 | mb-5 lg:mb-10">
+          <h2
+            class="text-3xl lg:text-4xl text-ccfv-blue font-bold font-display "
+          >
+            Latest News
+          </h2>
+        </div>
+        <div class="col-span-6 xl:col-span-8 | mb-5 lg:mb-10 ms-auto lg:ms-0 | flex items-start">
+        <!-- slider nav -->
+          <span role="button" class="ccfv-posts--swiper-nav-previous | border-ccfv-blue border-4 rounded-full | bg-white hover:bg-ccfv-orange active:bg-ccfv-gold  | p-3 mx-3 | transition-all duration-75 | group">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 group-hover:stroke-white stroke-ccfv-blue">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            </svg>
+          </span>
+          <span role="button" class="ccfv-posts--swiper-nav-next | border-ccfv-blue border-4 rounded-full | bg-white hover:bg-ccfv-orange active:bg-ccfv-gold  | p-3 mx-3 | transition-all duration-75 | group">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 group-hover:stroke-white stroke-ccfv-blue">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+
+          </span>
+        </div>
+        <div class="col-span-12 overflow-visible | pb-6 lg:pb-0">
           <swiper-container
             :slides-per-view="1.5"
             :space-between="swiperParams.spaceBetween"
             :centered-slides="false"
             :pagination="false"
             :breakpoints="swiperParams.breakpoints_half"
+            :navigation="post_navigation"
           >
             <swiper-slide v-for="card in posts" class="row-span-1">
               <Card
